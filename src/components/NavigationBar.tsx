@@ -16,7 +16,7 @@ const NavigationBar: React.FC = () => {
 
   return (
     <>
-      {/* ✅ 모바일: 하단 고정 네비게이션 (간격 줄임) */}
+      {/* 모바일: 하단 고정 네비게이션 (간격 줄임) */}
       <nav className="fixed bottom-0 w-full h-[3.5rem] bg-white border-t border-black/20 flex justify-around items-center gap-[0rem] md:hidden">
         {NAV_ITEMS.map((item, index) => {
           const isActive = activeIndex === index;
@@ -48,7 +48,7 @@ const NavigationBar: React.FC = () => {
         })}
       </nav>
 
-      {/* ✅ 데스크탑: 왼쪽 네비게이션 (간격 유지) */}
+      {/* 데스크탑: 왼쪽 네비게이션 (간격 유지) */}
       <nav className="hidden md:flex flex-col items-center w-[3.5rem] h-[22.5rem] absolute left-[2.4375rem] top-[8.625rem] bg-white p-[1rem] shadow-lg rounded-xl gap-[1.5rem]">
         {NAV_ITEMS.map((item, index) => {
           const isActive = activeIndex === index;
