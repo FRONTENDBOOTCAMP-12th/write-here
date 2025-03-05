@@ -36,3 +36,12 @@
   src: url('fonts/Paperlogy-6SemiBald.woff') format('woff');
   font-weight: bold;
 }
+.mask-icon {
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}

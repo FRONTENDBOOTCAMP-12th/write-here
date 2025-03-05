@@ -1,59 +1,85 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/global.css';
 
-const NAV_ITEMS = ['여기 적기', '일기', '캘린더', '공유 일기, 프로필'];
+const NAV_ITEMS = [
+  { label: '여기적기', icon: '/icons/icon-nav-map.svg' },
+  { label: '일기', icon: '/icons/icon-nav-book.svg' },
+  { label: '캘린더', icon: '/icons/icon-nav-calendar.svg' },
+  { label: '공유일기', icon: '/icons/icon-nav-people.svg' },
+  { label: '프로필', icon: '/icons/icon-person.svg' },
+];
 
-// NavItem 컴포넌트
-const NavItem: React.FC<{
-  label: string;
-  isActive: boolean;
-  onClick: () => void;
-}> = ({ label, isActive, onClick }) => {
-  return (
-    <button
-      className={`flex items-center justify-center px-4 py-2 text-sm font-semibold cursor-pointer transition-colors w-full
-        ${
-          isActive
-            ? 'text-white bg-primary relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-tertiary after:mb-[-4px]'
-            : 'text-gray-400'
-        }
-        focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary rounded-sm`}
-      onClick={onClick}
-    >
-      {label}
-    </button>
-  );
-};
-
-// NavigationBar 컴포넌트
 const NavigationBar: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
-    <nav className="bg-primary sticky top-0 z-10">
-      {/* 모바일: 가로 네비게이션 */}
-      <div className="flex md:hidden items-center justify-between w-full h-12">
-        {NAV_ITEMS.map((item, index) => (
-          <NavItem
-            key={item}
-            label={item}
-            isActive={activeIndex === index}
-            onClick={() => setActiveIndex(index)}
-          />
-        ))}
-      </div>
+    <>
+      {/* ✅ 모바일: 하단 고정 네비게이션 (간격 줄임) */}
+      <nav className="fixed bottom-0 w-full h-[3.5rem] bg-white border-t border-black/20 flex justify-around items-center gap-[0rem] md:hidden">
+        {NAV_ITEMS.map((item, index) => {
+          const isActive = activeIndex === index;
+          return (
+            <button
+              key={item.label}
+              className={`flex flex-col items-center font-paperlogy transition-all w-full text-center
+                ${isActive ? 'text-[var(--logo-green)]' : 'text-[var(--dark-gray)]'}
+                cursor-pointer hover:opacity-80`}
+              onClick={() => {
+                setActiveIndex(index);
+                navigate('/not-found');
+              }}
+            >
+              <span
+                className={`w-[3rem] h-[1.5rem] mb-[0.25rem] mask-icon`}
+                style={{
+                  maskImage: `url(${item.icon})`,
+                  WebkitMaskImage: `url(${item.icon})`,
+                }}
+              ></span>
+              <span
+                className={`text-[0.875rem] md:text-[0.75rem] lg:text-[0.6875rem] whitespace-nowrap`}
+              >
+                {item.label}
+              </span>
+            </button>
+          );
+        })}
+      </nav>
 
-      {/* 데스크톱: 왼쪽 고정형 세로 네비게이션 */}
-      <div className="hidden md:flex flex-col items-start w-48 h-screen fixed left-0 top-0 bg-primary p-4">
-        {NAV_ITEMS.map((item, index) => (
-          <NavItem
-            key={item}
-            label={item}
-            isActive={activeIndex === index}
-            onClick={() => setActiveIndex(index)}
-          />
-        ))}
-      </div>
-    </nav>
+      {/* ✅ 데스크탑: 왼쪽 네비게이션 (간격 유지) */}
+      <nav className="hidden md:flex flex-col items-center w-[3.5rem] h-[22.5rem] absolute left-[2.4375rem] top-[8.625rem] bg-white p-[1rem] shadow-lg rounded-xl gap-[1.5rem]">
+        {NAV_ITEMS.map((item, index) => {
+          const isActive = activeIndex === index;
+          return (
+            <button
+              key={item.label}
+              className={`flex flex-col items-center font-paperlogy transition-all w-full text-center
+                ${isActive ? 'text-[var(--logo-green)]' : 'text-[var(--dark-gray)]'}
+                cursor-pointer hover:opacity-80`}
+              onClick={() => {
+                setActiveIndex(index);
+                navigate('/not-found');
+              }}
+            >
+              <span
+                className={`w-[1.5rem] h-[1.5rem] mask-icon`}
+                style={{
+                  maskImage: `url(${item.icon})`,
+                  WebkitMaskImage: `url(${item.icon})`,
+                }}
+              ></span>
+              <span
+                className={`text-[0.875rem] md:text-[0.75rem] lg:text-[0.6875rem] whitespace-nowrap`}
+              >
+                {item.label}
+              </span>
+            </button>
+          );
+        })}
+      </nav>
+    </>
   );
 };
 
