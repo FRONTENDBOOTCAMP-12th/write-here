@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
+import tmMerge from '../utils/tw-merge'; // 유틸에서 import
 import '../styles/global.css';
 
 const NAV_ITEMS = [
@@ -22,10 +22,10 @@ const NavigationBar: React.FC = () => {
 
   return (
     <nav
-      className={twMerge(
+      className={tmMerge(
         'fixed bg-white border-black/20 flex items-center justify-around',
-        'bottom-0 w-full h-[3.5rem] min-w-0', // 모바일: 너비 제한 해제
-        'md:top-[8.625rem] md:left-[2.4375rem] md:w-[3.5rem] md:h-[22.5rem] md:flex-col md:shadow-lg md:rounded-xl md:gap-y-6' // 데스크탑: 기존 스타일 유지
+        'bottom-0 w-full h-[4rem] min-w-0',
+        'md:top-[8.625rem] md:left-[2.4375rem] md:w-[3.5rem] md:h-[22.5rem] md:flex-col md:shadow-lg md:rounded-xl md:gap-y-6'
       )}
     >
       {NAV_ITEMS.map((item) => {
@@ -37,16 +37,16 @@ const NavigationBar: React.FC = () => {
         return (
           <button
             key={item.label}
-            className={twMerge(
+            className={tmMerge(
               'flex flex-col items-center text-center font-paperlogy transition-all cursor-pointer hover:opacity-80',
-              'w-auto min-w-[50px] max-w-[65px] px-0 shrink-0', // 버튼 크기 조정 및 최소 너비 설정
+              'w-auto min-w-[50px] max-w-[65px] px-0 shrink-0',
               isActive ? 'text-[var(--logo-green)]' : 'text-[var(--dark-gray)]'
             )}
             onClick={() => navigate(item.path)}
           >
             <span
-              className={twMerge(
-                'w-[1.5rem] h-[1.5rem] mask-icon', // 아이콘 크기 축소
+              className={tmMerge(
+                'w-[1.75rem] h-[1.75rem] mask-icon',
                 isActive ? 'bg-[var(--logo-green)]' : 'bg-[var(--dark-gray)]'
               )}
               style={{
@@ -54,7 +54,7 @@ const NavigationBar: React.FC = () => {
                 WebkitMaskImage: `url(${item.icon})`,
               }}
             ></span>
-            <span className="text-[0.75rem] whitespace-nowrap">
+            <span className="text-[0.875rem] whitespace-nowrap">
               {item.label}
             </span>
           </button>
