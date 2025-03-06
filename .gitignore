@@ -37,3 +37,6 @@ Thumbs.db
 # Lint & Formatting cache
 .eslintcache
 .prettier-cache/
+
+# 네비게이션 테스트 페이지 제외
+src/pages/navigation-test/
