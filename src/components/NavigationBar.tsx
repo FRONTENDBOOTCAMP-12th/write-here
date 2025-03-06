@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import tmMerge from '../utils/tw-merge'; // 유틸에서 import
+import tm from '../utils/tw-merge'; // 유틸에서 import
 import '../styles/global.css';
 
 const NAV_ITEMS = [
@@ -22,7 +22,7 @@ const NavigationBar: React.FC = () => {
 
   return (
     <nav
-      className={tmMerge(
+      className={tm(
         'fixed bg-white border-black/20 flex items-center justify-around',
         'bottom-0 w-full h-[4rem] min-w-0',
         'md:top-[8.625rem] md:left-[2.4375rem] md:w-[3.5rem] md:h-[22.5rem] md:flex-col md:shadow-lg md:rounded-xl md:gap-y-6'
@@ -37,7 +37,7 @@ const NavigationBar: React.FC = () => {
         return (
           <button
             key={item.label}
-            className={tmMerge(
+            className={tm(
               'flex flex-col items-center text-center font-paperlogy transition-all cursor-pointer hover:opacity-80',
               'w-auto min-w-[50px] max-w-[65px] px-0 shrink-0',
               isActive ? 'text-[var(--logo-green)]' : 'text-[var(--dark-gray)]'
@@ -45,7 +45,7 @@ const NavigationBar: React.FC = () => {
             onClick={() => navigate(item.path)}
           >
             <span
-              className={tmMerge(
+              className={tm(
                 'w-[1.75rem] h-[1.75rem] mask-icon',
                 isActive ? 'bg-[var(--logo-green)]' : 'bg-[var(--dark-gray)]'
               )}
