@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import tm from '../utils/tw-merge'; //  Tailwind Merge 유틸 불러오기
+import tm from '../utils/tw-merge';
 
 const Toggle: React.FC = () => {
   const [isOn, setIsOn] = useState(false);
@@ -8,9 +8,9 @@ const Toggle: React.FC = () => {
     <div className="flex justify-center items-center w-full py-4">
       <button
         className={tm(
-          'relative flex items-center transition-all rounded-full border-2 justify-start overflow-hidden', //왼쪽 배경까지 완전히 밀착
+          'relative flex items-center transition-all rounded-full border-2 justify-start overflow-hidden', //왼쪽 배경까지 밀착
           'w-[2.0625rem] h-[1.125rem] lg:w-[2.75rem] lg:h-[1.5rem]', //모바일: 33x18 → 2.0625rem x 1.125rem / 데스크탑: 44x24 → 2.75rem x 1.5rem
-          'pl-0', //왼쪽 패딩 완전히 제거
+          'pl-0', //왼쪽 패딩 제거
           isOn
             ? 'bg-[var(--logo-green)] border-[var(--logo-green)]'
             : 'bg-[#A0A5B1] border-[#A0A5B1]'
