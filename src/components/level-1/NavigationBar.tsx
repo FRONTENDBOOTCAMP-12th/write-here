@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import tm from '../utils/tw-merge'; // 유틸에서 import
+import tm from '../../utils/tw-merge'; // 유틸에서 import
 import '../styles/global.css';
 
 const NAV_ITEMS = [

@@ -1,5 +1,5 @@
 import React from 'react';
-import tm from '../utils/tw-merge';
+import tm from '../../utils/tw-merge';
 
 interface ToggleProps {
   isOn: boolean; // 부모 컴포넌트에서 상태를 관리 변수

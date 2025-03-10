@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationBar from '../../components/NavigationBar'; // 네비게이션 바 추가
+import NavigationBar from '../../components/level-1/NavigationBar'; // 네비게이션 바 추가
 
 function NotFound() {
   return (
