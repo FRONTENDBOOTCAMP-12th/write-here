@@ -8,7 +8,7 @@ function Tag({tagText}:Tag) {
   
   return(
     <span className={tm(
-      'bg-white px-2 py-1 rounded-3xl text-xs lg:text-base',
+      'bg-white px-2 py-1 rounded-3xl text-[10px] lg:text-base',
     )}>
       # {tagText}
     </span>
