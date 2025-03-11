@@ -3,21 +3,21 @@ import { tm } from '@/utils/tw-merge';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  detail: React.ReactNode;
-  buttonConfirmText: string;
-  buttonCancelText: string;
   onConfirm: () => void;
   onCancel: () => void;
+  confirmText: string;
+  cancelText: string;
+  children: React.ReactNode;
 }
 
 const Modal = ({
   isOpen,
   onClose,
-  detail,
-  buttonConfirmText,
-  buttonCancelText,
   onConfirm,
   onCancel,
+  confirmText,
+  cancelText,
+  children,
 }: ModalProps) => {
   if (!isOpen) return null;
 
@@ -41,25 +41,28 @@ const Modal = ({
           <img src="/icons/icon-x.svg" alt="닫기" className="w-6 h-6" />
         </button>
 
-        <div id="modal-description">{detail}</div>
+        <div id="modal-description">{children}</div>
 
         <div className="flex justify-center gap-4 mt-4">
           <button
             type="button"
-            onClick={onConfirm}
+            onClick={() => {
+              onConfirm();
+              onClose();
+            }}
             className="px-4 py-2 bg-[var(--logo-green)] text-white rounded-md hover:bg-[var(--logo-dark-green)]"
           >
-            {buttonConfirmText}
+            {confirmText}
           </button>
           <button
             type="button"
-            onClick={onCancel}
-            className={tm(
-              'px-4 py-2 bg-[var(--dark-gray)] text-white rounded-md',
-              'hover:bg-[var(--light-gray)]'
-            )}
+            onClick={() => {
+              onCancel();
+              onClose();
+            }}
+            className="px-4 py-2 bg-[var(--dark-gray)] text-white rounded-md hover:bg-[var(--light-gray)]"
           >
-            {buttonCancelText}
+            {cancelText}
           </button>
         </div>
       </section>
